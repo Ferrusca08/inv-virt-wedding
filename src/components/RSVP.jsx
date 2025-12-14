@@ -5,8 +5,6 @@ export default function RSVP() {
     const [formData, setFormData] = useState({
         name: '',
         guests: 1,
-        name: '',
-        guests: 1,
         attendance: 'Si',
         message: ''
     });

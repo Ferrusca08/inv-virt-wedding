@@ -1,18 +1,36 @@
+import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { BsMouse } from 'react-icons/bs';
 import heroImg from '../assets/hero_couple.png';
 
 export default function Hero() {
     const { scrollY } = useScroll();
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Disable parallax on mobile to prevent white gaps
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     const y = useTransform(scrollY, [0, 500], [0, 200]);
 
     return (
         <section className="hero" id="home">
             {/* Parallax Background */}
-            <motion.div style={{ y }} className="hero-bg-container absolute inset-0 w-full h-full">
+            <div className="hero-bg-container absolute inset-0 w-full h-full">
                 <div className="hero-overlay" />
-                <img src={heroImg} alt="Couple" className="hero-bg" />
-            </motion.div>
+                <motion.img
+                    style={{ y: isMobile ? 0 : y }}
+                    src={heroImg}
+                    alt="Couple"
+                    className="hero-bg"
+                />
+            </div>
 
             {/* Content */}
             <div className="hero-content">
