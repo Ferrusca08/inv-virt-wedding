@@ -22,6 +22,8 @@ export default function Navbar() {
         { title: 'Inicio', href: '#home' },
         { title: 'Ubicación', href: '#location' },
         { title: 'Itinerario', href: '#itinerary' },
+        { title: 'Hospedaje', href: '#hotels' },
+        { title: 'Regalos', href: '#gifts' },
         { title: 'Código de Vestimenta', href: '#dresscode' },
         { title: 'RSVP', href: '#rsvp' },
     ];
