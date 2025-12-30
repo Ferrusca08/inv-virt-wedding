@@ -27,7 +27,7 @@ export default function Hotels() {
     ];
 
     return (
-        <section className="section" id="hotels" style={{ backgroundColor: '#f9f9f9' }}>
+        <section className="section" id="hotels" style={{ backgroundColor: 'var(--color-bg)' }}>
             <div className="container" style={{ textAlign: 'center' }}>
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
