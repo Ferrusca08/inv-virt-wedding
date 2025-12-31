@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 :root {
-  --font-heading: "Playfair Display", serif;
+  --font-heading: "Cormorant Garamond", serif;
   --font-body: "Open Sans", sans-serif;
 
   /* New Palette: Powder Blush, Cherry Blossom, Almond Silk, Muted Teal, Grey */

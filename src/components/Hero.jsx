@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { BsMouse } from 'react-icons/bs';
 import heroImg from '../assets/hero_couple.png';
 
+
 export default function Hero() {
     const { scrollY } = useScroll();
     const [isMobile, setIsMobile] = useState(false);
@@ -34,14 +35,7 @@ export default function Hero() {
 
             {/* Content */}
             <div className="hero-content">
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 0.5 }}
-                    className="hero-subtitle"
-                >
-                    Nos Casamos
-                </motion.p>
+
                 <motion.h1
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
