@@ -59,7 +59,7 @@ export default function Location() {
                     <p style={{ marginBottom: '1.5rem', color: 'var(--color-text)' }}>Carr. Nacional Km 25, Monterrey, N.L.</p>
 
                     <motion.a
-                        href="https://goo.gl/maps/example"
+                        href=" https://maps.app.goo.gl/bcys2XaBYqDEu7jN7?g_st=iw"
                         target="_blank"
                         rel="noreferrer"
                         whileHover={{ scale: 1.05 }}

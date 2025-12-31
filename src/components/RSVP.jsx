@@ -50,7 +50,7 @@ export default function RSVP() {
     };
 
     return (
-        <section className="section bg-white" id="rsvp">
+        <section className="section" id="rsvp" style={{ backgroundColor: 'var(--color-bg)' }}>
             <div className="container" style={{ textAlign: 'center' }}>
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}

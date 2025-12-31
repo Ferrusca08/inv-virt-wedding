@@ -3,8 +3,8 @@ import { FaAmazon, FaGift, FaEnvelope } from 'react-icons/fa';
 
 export default function GiftRegistry() {
     return (
-        <section className="section bg-white" id="gifts">
-            <div className="container" style={{ textAlign: 'center' }}>
+        <section className="section" id="gifts" style={{ backgroundColor: 'var(--color-bg)' }}>
+            <div className="container" style={{ textAlign: 'center', }}>
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}

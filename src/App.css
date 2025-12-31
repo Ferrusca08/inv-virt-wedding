@@ -208,11 +208,12 @@
 .rsvp-form {
     max-width: 500px;
     margin: 0 auto;
-    background: white;
+    background-color: var(--color-white);
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     text-align: left;
+    color: var(--color-text);
 }
 
 .form-group {
@@ -226,6 +227,7 @@
     text-transform: uppercase;
     margin-bottom: 0.5rem;
     letter-spacing: 0.05em;
+    color: var(--color-text-dark);
 }
 
 .form-input,
@@ -237,6 +239,8 @@
     border: 1px solid #e5e7eb;
     font-family: inherit;
     transition: border-color 0.2s;
+    background-color: var(--color-bg);
+    color: var(--color-text);
 }
 
 .form-input:focus,
@@ -250,7 +254,7 @@
     width: 100%;
     justify-content: center;
     background-color: var(--color-text);
-    color: white;
+    color: var(--color-bg);
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
@@ -356,12 +360,13 @@
 }
 
 .hotel-card {
-    background: var(--color-white);
+    background-color: var(--color-white);
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
     text-align: left;
     transition: transform 0.3s ease;
+    color: var(--color-text);
 }
 
 .hotel-card:hover {
@@ -398,7 +403,7 @@
 }
 
 .gift-card {
-    background: white;
+    background-color: var(--color-white);
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
@@ -408,7 +413,7 @@
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    color: inherit;
+    color: var(--color-text);
     border: 1px solid transparent;
     transition: all 0.3s ease;
 }
@@ -434,6 +439,7 @@
     font-family: var(--font-heading);
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
+    color: var(--color-text-dark);
 }
 
 .gift-card p {
@@ -443,8 +449,6 @@
 
 /* Footer */
 .footer {
-    background-color: #000;
-    /* Always dark footer is fine, or use var(--color-text-dark) if intended */
     background-color: #111;
     color: white;
     padding: 3rem 1rem;
