@@ -4,25 +4,25 @@ import { FaMapMarkerAlt, FaStar, FaPhone } from 'react-icons/fa';
 export default function Hotels() {
     const hotels = [
         {
-            name: "Hotel Real de Minas",
+            name: "Casa de los Artistas ",
             stars: 5,
             distance: "10 min del lugar",
             phone: "+52 123 456 7890",
-            url: "#"
+            url: "https://casadelosartistas.com/"
         },
         {
-            name: "Holiday Inn Express",
+            name: "Ave del Paraíso B&B",
             stars: 4,
             distance: "15 min del lugar",
             phone: "+52 987 654 3210",
-            url: "#"
+            url: "https://avedelparaisotepoztlan.com/"
         },
         {
-            name: "City Express",
+            name: "Palacio del Cobre",
             stars: 4,
             distance: "12 min del lugar",
             phone: "+52 555 555 5555",
-            url: "#"
+            url: "https://palaciodelcobre.com/"
         }
     ];
 
@@ -32,10 +32,10 @@ export default function Hotels() {
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="text-4xl font-heading mb-4">Hospedaje</h2>
+                    <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--color-text)' }}>Hospedaje</h2>
                     <p style={{ color: 'var(--color-text)', marginBottom: '3rem' }}>
                         Recomendaciones para su estancia
                     </p>
@@ -46,24 +46,36 @@ export default function Hotels() {
                         <motion.div
                             key={index}
                             className="hotel-card"
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
+                            viewport={{ once: true, amount: 0.1 }}
+                            transition={{ delay: index * 0.1, duration: 0.5 }}
                         >
                             <div className="hotel-header">
-                                <h3>{hotel.name}</h3>
+                                <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', color: 'var(--color-text-dark)' }}>{hotel.name}</h3>
                                 <div className="stars">
                                     {[...Array(hotel.stars)].map((_, i) => (
-                                        <FaStar key={i} size={12} color="var(--color-gold)" />
+                                        <FaStar key={i} size={14} color="var(--color-gold)" />
                                     ))}
                                 </div>
                             </div>
                             <div className="hotel-body">
-                                <p><FaMapMarkerAlt className="inline mr-2" /> {hotel.distance}</p>
-                                <p><FaPhone className="inline mr-2" /> {hotel.phone}</p>
+                                <p><FaMapMarkerAlt className="inline mr-2" style={{ color: 'var(--color-gold)' }} /> {hotel.distance}</p>
+                                <p><FaPhone className="inline mr-2" style={{ color: 'var(--color-gold)' }} /> {hotel.phone}</p>
                             </div>
-                            <a href={hotel.url} className="btn btn-secondary mt-4 w-full" style={{ justifyContent: 'center' }}>
+                            <a
+                                href={hotel.url}
+                                className="btn btn-secondary"
+                                style={{
+                                    justifyContent: 'center',
+                                    marginTop: '1rem',
+                                    width: '100%',
+                                    display: 'flex',
+                                    textDecoration: 'none'
+                                }}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                                 Reservar
                             </a>
                         </motion.div>

@@ -33,9 +33,13 @@
     font-family: var(--font-heading);
     font-weight: 700;
     font-size: 1.8rem;
-    color: var(--color-text-dark);
+    color: #ffffff;
     text-decoration: none;
     transition: color 0.3s ease;
+}
+
+.navbar.scrolled .navbar-logo {
+    color: var(--color-text-dark);
 }
 
 /* Desktop Links */
@@ -56,10 +60,14 @@
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--color-text-dark);
+    color: #ffffff;
     text-decoration: none;
     transition: color 0.3s ease;
     position: relative;
+}
+
+.navbar.scrolled .nav-link {
+    color: var(--color-text-dark);
 }
 
 .nav-link::after {
@@ -95,12 +103,16 @@
 .mobile-menu-btn {
     display: block;
     font-size: 1.5rem;
-    color: var(--color-text-dark);
+    color: #ffffff;
     background: none;
     cursor: pointer;
     z-index: 1001;
     border: none;
     padding: 0;
+}
+
+.navbar.scrolled .mobile-menu-btn {
+    color: var(--color-text-dark);
 }
 
 @media (min-width: 768px) {

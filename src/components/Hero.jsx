@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { BsMouse } from 'react-icons/bs';
-import heroImg from '../assets/hero_couple.png';
+import heroImg from '../assets/CM.jpeg';
 
 
 export default function Hero() {
@@ -50,25 +50,11 @@ export default function Hero() {
                     transition={{ duration: 1, delay: 1.1 }}
                     className="hero-date"
                 >
-                    12 . Septiembre . 2026
+                    12 . 09 . 26
                 </motion.p>
             </div>
 
-            {/* Scroll Indicator */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 2, duration: 1 }}
-                className="scroll-indicator"
-            >
-                <span>Scroll</span>
-                <motion.div
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{ repeat: Infinity, duration: 1.5 }}
-                >
-                    <BsMouse size={24} />
-                </motion.div>
-            </motion.div>
+
         </section>
     );
 }
