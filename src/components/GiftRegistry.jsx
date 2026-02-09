@@ -19,8 +19,9 @@ export default function GiftRegistry() {
 
                 <div className="gift-grid">
                     <motion.a
-                        href="#"
+                        href="https://www.amazon.com.mx/wedding/share/miguelyclau"
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="gift-card"
                         whileHover={{ y: -10 }}
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -36,8 +37,9 @@ export default function GiftRegistry() {
                     </motion.a>
 
                     <motion.a
-                        href="#"
+                        href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/51950943"
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="gift-card"
                         whileHover={{ y: -10 }}
                         initial={{ opacity: 0, scale: 0.9 }}
