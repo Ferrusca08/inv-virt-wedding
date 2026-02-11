@@ -55,8 +55,8 @@ export default function Location() {
                 </motion.div>
 
                 <div>
-                    <h3 className="text-2xl font-heading mb-2">Hacienda San Miguel</h3>
-                    <p style={{ marginBottom: '1.5rem', color: 'var(--color-text)' }}>Carr. Nacional Km 25, Monterrey, N.L.</p>
+                    <h3 className="text-2xl font-heading mb-2">Piedrasanta Jardín de Eventos</h3>
+                    <p style={{ marginBottom: '1.5rem', color: 'var(--color-text)' }}>Carretera Federal Cuernavaca- Tepoztlán Km 14.1 San Miguel de la Cal, Centro, 62520 Tepoztlán, Mor.</p>
 
                     <motion.a
                         href=" https://maps.app.goo.gl/bcys2XaBYqDEu7jN7?g_st=iw"

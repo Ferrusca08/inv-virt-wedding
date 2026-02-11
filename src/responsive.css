@@ -1,0 +1,193 @@
+/* Mobile Responsive Styles */
+
+/* Footer */
+.footer {
+    background-color: #111;
+    color: white;
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+/* ======================================== */
+/* MOBILE RESPONSIVE MEDIA QUERIES */
+/* ======================================== */
+
+@media (max-width: 768px) {
+
+    /* Hero Section */
+    .hero-bg {
+        object-position: center center !important;
+        top: 0 !important;
+        height: 100% !important;
+    }
+
+    .hero-subtitle {
+        font-size: 16px !important;
+        margin-left: 0 !important;
+        margin-bottom: 1rem !important;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 6rem !important;
+        margin-left: 0 !important;
+        text-align: center;
+    }
+
+    .hero-date {
+        font-size: 1.2rem !important;
+        margin-left: 0 !important;
+    }
+
+    /* Countdown */
+    .countdown-container {
+        gap: 1rem !important;
+        flex-wrap: wrap;
+    }
+
+    .countdown-item {
+        min-width: 70px;
+    }
+
+    .countdown-val {
+        font-size: 2rem !important;
+    }
+
+    .calendar-buttons {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .calendar-buttons .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Itinerary */
+    .itinerary-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    .itinerary-card {
+        padding: 1.5rem !important;
+    }
+
+    /* Hotels */
+    .hotels-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* DressCode - Photo Grid */
+    div[style*="gridTemplateColumns: '1fr 1fr'"] {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    /* Gift Registry */
+    .gift-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gift-card {
+        max-width: 100% !important;
+        width: 100%;
+    }
+
+    /* RSVP Form */
+    .rsvp-form {
+        padding: 1.5rem !important;
+    }
+
+    /* Location */
+    .location-swiper {
+        height: 250px !important;
+    }
+
+    /* General Section Padding */
+    .section {
+        padding: 3rem 1rem !important;
+    }
+
+    /* Typography Adjustments */
+    h2.text-4xl {
+        font-size: 2rem !important;
+    }
+
+    h3.text-2xl {
+        font-size: 1.5rem !important;
+    }
+
+    /* OurStory Photo Grid */
+    div[style*="repeat(auto-fit, minmax(250px, 1fr))"] {
+        grid-template-columns: 1fr !important;
+        padding: 0 !important;
+    }
+
+    /* Container Max Width */
+    .container {
+        padding: 0 1.5rem !important;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra Small Devices (phones, less than 576px) */
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 4rem !important;
+    }
+
+    .hero-subtitle {
+        font-size: 14px !important;
+    }
+
+    .countdown-val {
+        font-size: 1.5rem !important;
+    }
+
+    .countdown-label {
+        font-size: 0.7rem;
+    }
+
+    h2.text-4xl {
+        font-size: 1.75rem !important;
+    }
+
+    /* Reduce padding on very small screens */
+    .section {
+        padding: 2rem 0.75rem !important;
+    }
+
+    .container {
+        padding: 0 1rem !important;
+    }
+
+    .rsvp-form {
+        padding: 1rem !important;
+    }
+
+    /* Photo heights */
+    img[style*="height: 300px"] {
+        height: 250px !important;
+    }
+}
+
+/* Landscape Mode for Mobile */
+@media (max-width: 896px) and (orientation: landscape) {
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 4rem 1rem;
+    }
+
+    .countdown-container {
+        flex-wrap: nowrap;
+    }
+}

@@ -2,10 +2,12 @@ import { motion } from 'framer-motion';
 
 // Styles
 import './App.css';
+import './responsive.css';
 
 // Components
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import OurStory from './components/OurStory';
 import Countdown from './components/Countdown';
 import Location from './components/Location';
 import Itinerary from './components/Itinerary';
@@ -25,6 +27,7 @@ function App() {
       >
         <Navbar />
         <Hero />
+        <OurStory />
         <Countdown />
         <Location />
         <Itinerary />
@@ -39,3 +42,4 @@ function App() {
 }
 
 export default App
+

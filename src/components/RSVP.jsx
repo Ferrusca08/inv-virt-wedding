@@ -180,7 +180,7 @@ export default function RSVP() {
                                             onChange={handleChange}
                                             className="accent-stone-500"
                                         />
-                                        <span style={{ fontWeight: 500 }}>{option === 'Si' ? 'Sí, asistiré' : 'No podré ir'}</span>
+                                        <span style={{ fontWeight: 500, padding: '30px' }}>{option === 'Si' ? 'Sí, asistiré' : 'No podré ir'}</span>
                                     </label>
                                 ))}
                             </div>
