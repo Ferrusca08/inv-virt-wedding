@@ -95,7 +95,7 @@
 .hero-title {
     font-family: var(--font-heading);
     font-size: 10px;
-    color: var(--color-white);
+    color: #ffffff !important;
     margin-bottom: 2.5rem;
     margin-left: 40.5rem;
     text-align: right;
@@ -113,7 +113,7 @@
 .hero-date {
     font-size: 2rem;
     letter-spacing: 0.1em;
-    color: var(--color-white);
+    color: #ffffff !important;
     margin-left: 40rem;
 }
 
