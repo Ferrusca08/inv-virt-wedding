@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import photo1 from '../assets/0E6BFED8-2A56-41E9-ADA1-22F3268DDC52.jpeg';
-import photo2 from '../assets/2F52E037-F45C-401E-AA50-3FF376231CAB.jpeg';
-import photo3 from '../assets/3034163C-0542-471F-87B8-4853CB3869EE.jpeg';
-import photo4 from '../assets/3932727F-79AC-4588-BF66-E736BDD503FA.jpeg';
+import photo1 from '../assets/hero_couple.png';
+import photo2 from '../assets/CM.jpeg';
+import photo3 from '../assets/venue_church.png';
+import photo4 from '../assets/venue_garden.png';
 
 export default function OurStoryPage() {
     const navigate = useNavigate();
