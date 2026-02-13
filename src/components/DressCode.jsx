@@ -84,17 +84,7 @@ export default function DressCode() {
                         <p style={{ color: 'var(--color-text-dark)', marginBottom: '0.75rem', lineHeight: '1.7' }}>
                             Vestido <strong>largo o midi</strong>, elegante y fluido, ideal para jardín. Tacón ancho, cuña o plataforma.
                         </p>
-                        <p style={{
-                            color: 'var(--color-text-dark)',
-                            marginBottom: '1rem',
-                            padding: '0.5rem 0.75rem',
-                            background: '#fffbea',
-                            borderRadius: '0.25rem',
-                            fontSize: '0.95rem',
-                            lineHeight: '1.6'
-                        }}>
-                            <strong>Por respeto a la novia:</strong> evitar blanco, crema y tonos claros similares.
-                        </p>
+
                         <p style={{
                             color: '#c41e3a',
                             fontStyle: 'italic',
@@ -105,30 +95,13 @@ export default function DressCode() {
                             borderRadius: '0.25rem',
                             borderLeft: '3px solid #c41e3a'
                         }}>
+                            <strong>Por respeto a la novia: evitar blanco, crema y tonos claros similares.</strong><br />
                             <strong>Evitar:</strong> vestidos cortos tipo cóctel nocturno, telas pesadas, tacones muy delgados o looks demasiado urbanos.
                         </p>
                     </motion.div>
                 </div>
 
-                {/* Cita decorativa */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    style={{ maxWidth: '600px', margin: '0 auto' }}
-                >
-                    <div style={{
-                        padding: '1.5rem',
-                        background: 'var(--color-bg)',
-                        borderLeft: '3px solid var(--color-gold)',
-                        fontStyle: 'italic',
-                        color: 'var(--color-text)',
-                        textAlign: 'center'
-                    }}>
-                        "La elegancia es la única belleza que nunca se desvanece."
-                    </div>
-                </motion.div>
+
             </div>
         </section>
     );

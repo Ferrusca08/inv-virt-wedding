@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
@@ -8,6 +9,8 @@ import './Navbar.css'; // Creating a dedicated CSS file
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const location = useLocation();
+    const isHomePage = location.pathname === '/';
 
     // Handle scroll for background effect
     useEffect(() => {
@@ -19,13 +22,14 @@ export default function Navbar() {
     }, []);
 
     const navLinks = [
-        { title: 'Inicio', href: '#home' },
-        { title: 'Ubicación', href: '#location' },
-        { title: 'Itinerario', href: '#itinerary' },
-        { title: 'Hospedaje', href: '#hotels' },
-        { title: 'Regalos', href: '#gifts' },
-        { title: 'Código de Vestimenta', href: '#dresscode' },
-        { title: 'RSVP', href: '#rsvp' },
+        { title: 'Inicio', href: isHomePage ? '#home' : '/#home', isRoute: !isHomePage },
+        { title: 'Nuestra Historia', href: '/nuestra-historia', isRoute: true },
+        { title: 'Ubicación', href: isHomePage ? '#location' : '/#location', isRoute: !isHomePage },
+        { title: 'Itinerario', href: isHomePage ? '#itinerary' : '/#itinerary', isRoute: !isHomePage },
+        { title: 'Hospedaje', href: isHomePage ? '#hotels' : '/#hotels', isRoute: !isHomePage },
+        { title: 'Regalos', href: isHomePage ? '#gifts' : '/#gifts', isRoute: !isHomePage },
+        { title: 'Código de Vestimenta', href: isHomePage ? '#dresscode' : '/#dresscode', isRoute: !isHomePage },
+        { title: 'RSVP', href: isHomePage ? '#rsvp' : '/#rsvp', isRoute: !isHomePage },
     ];
 
     const toggleMenu = () => setIsOpen(!isOpen);
@@ -47,9 +51,15 @@ export default function Navbar() {
                 {/* Desktop Menu */}
                 <div className="navbar-links">
                     {navLinks.map((link) => (
-                        <a key={link.title} href={link.href} className="nav-link">
-                            {link.title}
-                        </a>
+                        link.isRoute ? (
+                            <Link key={link.title} to={link.href} className="nav-link">
+                                {link.title}
+                            </Link>
+                        ) : (
+                            <a key={link.title} href={link.href} className="nav-link">
+                                {link.title}
+                            </a>
+                        )
                     ))}
                     <ThemeToggle />
                 </div>
@@ -80,14 +90,25 @@ export default function Navbar() {
                                 className="mobile-menu-overlay"
                             >
                                 {navLinks.map((link) => (
-                                    <a
-                                        key={link.title}
-                                        href={link.href}
-                                        onClick={handleLinkClick}
-                                        className="mobile-nav-link"
-                                    >
-                                        {link.title}
-                                    </a>
+                                    link.isRoute ? (
+                                        <Link
+                                            key={link.title}
+                                            to={link.href}
+                                            onClick={handleLinkClick}
+                                            className="mobile-nav-link"
+                                        >
+                                            {link.title}
+                                        </Link>
+                                    ) : (
+                                        <a
+                                            key={link.title}
+                                            href={link.href}
+                                            onClick={handleLinkClick}
+                                            className="mobile-nav-link"
+                                        >
+                                            {link.title}
+                                        </a>
+                                    )
                                 ))}
                                 <button
                                     className="mobile-close-btn"

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaGoogle, FaApple } from 'react-icons/fa';
+import { FaGoogle } from 'react-icons/fa';
 
 export default function Countdown() {
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
@@ -28,12 +28,8 @@ export default function Countdown() {
     });
 
     const addToGoogleCalendar = () => {
-        const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+Miguel+%26+Claudia&dates=20260912T180000Z/20260913T020000Z&details=Celebra+nuestra+boda.&location=Hacienda+San+Miguel`;
+        const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+Claudia+%26+Miguel&dates=20260912T180000Z/20260913T020000Z&details=Celebra+nuestra+boda.&location=Piedrasanta+Jardín+de+Eventos`;
         window.open(url, '_blank');
-    };
-
-    const addToAppleCalendar = () => {
-        alert("Descargando evento .ics...");
     };
 
     return (
@@ -79,15 +75,6 @@ export default function Countdown() {
                     >
                         <FaGoogle className="text-red-500" />
                         <span>Google Calendar</span>
-                    </motion.button>
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={addToAppleCalendar}
-                        className="btn btn-secondary"
-                    >
-                        <FaApple />
-                        <span>Apple Calendar</span>
                     </motion.button>
                 </div>
             </div>

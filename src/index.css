@@ -2,7 +2,7 @@
 
 :root {
   --font-heading: "Cormorant Garamond", serif;
-  --font-body: "Cormorant Garamond", serif;
+  --font-body: "Libre Baskerville", serif;
 
   /* New Palette: Powder Blush, Cherry Blossom, Almond Silk, Muted Teal, Grey */
   --color-gold: #C9B7AD;
@@ -18,7 +18,7 @@
   --color-text: #797D81;
   /* Grey */
   --color-text-dark: #555555;
-  /* Darker grey for legibility if needed */
+  /* Darker grey fogit r legibility if needed */
   --color-text-light: #94A89A;
   /* Muted Teal for light text */
   --color-white: #ffffff;
