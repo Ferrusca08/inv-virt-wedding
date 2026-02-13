@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { FaHeart } from 'react-icons/fa';
-import photo1 from '../assets/0E6BFED8-2A56-41E9-ADA1-22F3268DDC52.jpeg';
+import photo1 from '../assets/hero_couple.png';
 
 export default function OurStory() {
     return (

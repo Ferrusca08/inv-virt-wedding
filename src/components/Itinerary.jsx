@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import couplePhoto from '../assets/CD88A39F-B832-40E0-86E4-F817F23C1FBE.jpeg';
+import couplePhoto from '../assets/CM.jpeg';
 
 export default function Itinerary() {
     const events = [
