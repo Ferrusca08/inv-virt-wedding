@@ -3,10 +3,10 @@ import couplePhoto from '../assets/CD88A39F-B832-40E0-86E4-F817F23C1FBE.jpeg';
 
 export default function Itinerary() {
     const events = [
-        { time: '6:00 PM', title: 'Ceremonia Religiosa' },
-        { time: '7:30 PM', title: 'Cóctel de Bienvenida' },
-        { time: '9:00 PM', title: 'Recepción & Cena' },
-        { time: '11:00 PM', title: 'Fiesta' },
+        { time: '1:30 PM', title: 'Recepción' },
+        { time: '2:00 PM', title: 'Ceremonia' },
+        { time: '3:00 PM', title: 'Celebración' },
+        { time: '2:00 AM', title: 'Fin del evento' },
     ];
 
     return (

@@ -173,19 +173,7 @@
     text-align: center;
 }
 
-.location-swiper {
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2rem;
-    height: 300px;
-}
 
-@media (min-width: 768px) {
-    .location-swiper {
-        height: 500px;
-    }
-}
 
 /* Dress Code */
 .dress-code-grid {
