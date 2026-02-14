@@ -2,7 +2,7 @@ import fs from 'fs';
 
 const INPUT_FILE = 'guests.csv';
 const OUTPUT_FILE = 'links.csv';
-const BASE_URL = 'https://clauymiguel.com/';
+const BASE_URL = 'https://claudiaymiguel.com/';
 
 try {
     const data = fs.readFileSync(INPUT_FILE, 'utf8');
