@@ -1,8 +1,17 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { createPortal } from 'react-dom';
+import { FaTimes } from 'react-icons/fa';
 import dressCodeWomen from '../assets/dresscode_women.jpg';
 import dressCodeMen from '../assets/dresscode_men.jpg';
+import './DressCode.css';
 
 export default function DressCode() {
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    const openLightbox = (img) => setSelectedImage(img);
+    const closeLightbox = () => setSelectedImage(null);
+
     return (
         <section className="section bg-white" id="dresscode">
             <div className="container">
@@ -25,7 +34,7 @@ export default function DressCode() {
                     </p>
                 </motion.div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', maxWidth: '1200px', margin: '0 auto 3rem' }}>
+                <div className="dress-code-grid">
                     {/* Sección Hombres */}
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
@@ -35,16 +44,18 @@ export default function DressCode() {
                         style={{ textAlign: 'left' }}
                     >
                         <h3 className="text-2xl font-bold mb-4 font-heading" style={{ color: 'var(--color-gold)' }}>Hombres</h3>
-                        <img
-                            src={dressCodeMen}
-                            alt="Código de vestimenta para hombres"
-                            style={{
-                                width: '100%',
-                                borderRadius: '0.5rem',
-                                boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)',
-                                marginBottom: '1.5rem'
-                            }}
-                        />
+
+                        <div
+                            className="dress-code-img-wrapper"
+                            onClick={() => openLightbox(dressCodeMen)}
+                        >
+                            <img
+                                src={dressCodeMen}
+                                alt="Código de vestimenta para hombres"
+                                className="dress-code-img"
+                            />
+                        </div>
+
                         <p style={{ color: 'var(--color-text-dark)', marginBottom: '1rem', lineHeight: '1.7' }}>
                             Traje o saco con pantalón de vestir en <strong>telas ligeras</strong> (lino, algodón). Colores suaves o terrosos. Corbata opcional. Zapatos formales cómodos.
                         </p>
@@ -71,16 +82,18 @@ export default function DressCode() {
                         style={{ textAlign: 'left' }}
                     >
                         <h3 className="text-2xl font-bold mb-4 font-heading" style={{ color: 'var(--color-gold)' }}>Mujeres</h3>
-                        <img
-                            src={dressCodeWomen}
-                            alt="Código de vestimenta para mujeres"
-                            style={{
-                                width: '100%',
-                                borderRadius: '0.5rem',
-                                boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)',
-                                marginBottom: '1.5rem'
-                            }}
-                        />
+
+                        <div
+                            className="dress-code-img-wrapper"
+                            onClick={() => openLightbox(dressCodeWomen)}
+                        >
+                            <img
+                                src={dressCodeWomen}
+                                alt="Código de vestimenta para mujeres"
+                                className="dress-code-img"
+                            />
+                        </div>
+
                         <p style={{ color: 'var(--color-text-dark)', marginBottom: '0.75rem', lineHeight: '1.7' }}>
                             Vestido <strong>largo o midi</strong>, elegante y fluido, ideal para jardín. Tacón ancho, cuña o plataforma.
                         </p>
@@ -101,9 +114,42 @@ export default function DressCode() {
                     </motion.div>
                 </div>
 
-
+                {/* Lightbox Portal */}
+                {createPortal(
+                    <AnimatePresence>
+                        {selectedImage && (
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                className="lightbox-overlay"
+                                onClick={closeLightbox}
+                            >
+                                <button className="lightbox-close-btn" onClick={closeLightbox}>
+                                    <FaTimes />
+                                </button>
+                                <motion.div
+                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    exit={{ scale: 0.8, opacity: 0 }}
+                                    transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                                    className="lightbox-content"
+                                    onClick={(e) => e.stopPropagation()} // Prevent closing when clicking the image itself
+                                >
+                                    <img
+                                        src={selectedImage}
+                                        alt="Zoom"
+                                        className="lightbox-img"
+                                    />
+                                </motion.div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>,
+                    document.body
+                )}
             </div>
         </section>
     );
 }
+
 

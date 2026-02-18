@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import anilloImg from '../assets/anillo.jpeg';
 
 export default function RSVP() {
     // 1. Estados del formulario y control
@@ -37,11 +38,6 @@ export default function RSVP() {
                     const rows = csvText.split('\n').map(row =>
                         row.split(',').map(cell => cell.replace(/^"(.*)"$/, '$1'))
                     );
-
-                    // Debug: Ver columnas en consola para asegurar indices
-                    // Col 0: Name (ID)
-                    // Col 3: Cantidad de boletos (Header está vacío pero dato es numérico)
-                    // Col 6: RSVP status
 
                     // Buscar por ID (Columna A - índice 0)
                     const row = rows.find(r => r[0] && r[0].trim().toLowerCase() === id.trim().toLowerCase());
@@ -115,12 +111,24 @@ export default function RSVP() {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="bg-green-50 p-8 rounded-xl inline-block"
-                        style={{ color: '#15803d', border: '1px solid #15803d' }}
+                        className="bg-white p-8 rounded-xl inline-block"
+                        style={{ color: 'var(--color-text)', border: '1px solid var(--color-gold)', maxWidth: '400px' }}
                     >
-                        <h3 className="text-2xl font-bold mb-2">¡Gracias por confirmar!</h3>
-                        <p>Tu respuesta ha sido registrada.</p>
-                        <p className="mt-2 text-sm">Nos vemos en la boda.</p>
+                        <img
+                            src={anilloImg}
+                            alt="Anillo"
+                            style={{
+                                width: '100%',
+                                maxWidth: '200px',
+                                margin: '0 auto 1.5rem',
+                                display: 'block',
+                                borderRadius: '50%',
+                                border: '3px solid var(--color-gold)'
+                            }}
+                        />
+                        <h3 className="text-2xl font-bold mb-4 font-heading" style={{ color: 'var(--color-gold)' }}>¡Gracias por confirmar!</h3>
+                        <p style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Tu respuesta ha sido registrada.</p>
+                        <p className="font-heading" style={{ fontSize: '1.5rem', color: 'var(--color-text-dark)' }}>¡Nos vemos en septiembre!</p>
                     </motion.div>
                 ) : (
                     <motion.form
@@ -169,7 +177,7 @@ export default function RSVP() {
                         {/* Asistencia */}
                         <div className="form-group mb-4">
                             <label className="form-label block mb-2">¿Podrás asistir?</label>
-                            <div className="flex gap-4 justify-start">
+                            <div className="flex flex-col sm:flex-row gap-4 justify-start">
                                 {['Si', 'No'].map((option) => (
                                     <label key={option} className="flex items-center gap-2 cursor-pointer p-3 border rounded-lg hover:bg-gray-50 transition-colors" style={{ flex: 1, justifyContent: 'center' }}>
                                         <input
@@ -180,7 +188,7 @@ export default function RSVP() {
                                             onChange={handleChange}
                                             className="accent-stone-500"
                                         />
-                                        <span style={{ fontWeight: 500, padding: '30px' }}>{option === 'Si' ? 'Sí, asistiré' : 'No podré ir'}</span>
+                                        <span style={{ fontWeight: 500 }}>{option === 'Si' ? 'Sí, asistiré' : 'No podré ir'}</span>
                                     </label>
                                 ))}
                             </div>

@@ -392,58 +392,7 @@
     align-items: center;
 }
 
-/* Gift Registry */
-.gift-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-}
-
-.gift-card {
-    background-color: var(--color-white);
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    width: 100%;
-    max-width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: var(--color-text);
-    border: 1px solid transparent;
-    transition: all 0.3s ease;
-}
-
-.gift-card:hover {
-    border-color: var(--color-gold);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
-
-.gift-icon-wrapper {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: var(--color-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-    color: var(--color-gold);
-}
-
-.gift-card h3 {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--color-text-dark);
-}
-
-.gift-card p {
-    font-size: 0.9rem;
-    color: var(--color-text);
-}
+/* Gift Registry - Component has its own CSS file */
 
 /* Footer */
 .footer {

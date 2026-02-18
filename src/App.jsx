@@ -20,15 +20,20 @@ import Footer from './components/Footer';
 // Pages
 import OurStoryPage from './pages/OurStoryPage';
 
+import lagunaImg from './assets/laguna.jpeg';
+import pedidaImg from './assets/Beso en puente.jpeg';
+
 function HomePage() {
   return (
     <>
       <Navbar />
       <Hero />
       <Countdown />
+      <img src={lagunaImg} alt="Separador Laguna" style={{ width: '100%', height: 'auto', display: 'block' }} />
       <Location />
       <Itinerary />
       <Hotels />
+      <img src={pedidaImg} alt="Separador Pedida" style={{ width: '100%', height: 'auto', display: 'block' }} />
       <GiftRegistry />
       <DressCode />
       <RSVP />

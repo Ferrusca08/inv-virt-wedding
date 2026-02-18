@@ -16,27 +16,44 @@
 
     /* Hero Section */
     .hero-bg {
-        object-position: center center !important;
+        object-position: 35% center !important;
         top: 0 !important;
         height: 100% !important;
+    }
+
+    .hero-content {
+        margin-bottom: 3rem;
+        /* Position "Claudia & Miguel" even lower */
+    }
+
+    .hero-date-wrapper {
+        margin-top: 10rem !important;
+        /* Adjust separation to keep Date/Button balanced */
     }
 
     .hero-subtitle {
         font-size: 16px !important;
         margin-left: 0 !important;
         margin-bottom: 1rem !important;
-        text-align: center;
+        margin-bottom: 1rem !important;
+        text-align: right;
+        padding-right: 2rem;
     }
 
     .hero-title {
         font-size: 6rem !important;
         margin-left: 0 !important;
-        text-align: center;
+        text-align: right;
+        padding-right: 2rem;
+        margin-top: auto;
     }
 
     .hero-date {
+        margin-top: auto;
         font-size: 1.2rem !important;
         margin-left: 0 !important;
+        text-align: center !important;
+        padding-right: 0 !important;
     }
 
     /* Countdown */
@@ -79,22 +96,9 @@
         grid-template-columns: 1fr !important;
     }
 
-    /* DressCode - Photo Grid */
-    div[style*="gridTemplateColumns: '1fr 1fr'"] {
-        grid-template-columns: 1fr !important;
-        gap: 2rem !important;
-    }
+    /* DressCode - Photo Grid style handled in DressCode.css */
 
-    /* Gift Registry */
-    .gift-grid {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .gift-card {
-        max-width: 100% !important;
-        width: 100%;
-    }
+    /* Gift Registry - Handled in GiftRegistry.css */
 
     /* RSVP Form */
     .rsvp-form {
