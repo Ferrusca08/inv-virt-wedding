@@ -38,7 +38,11 @@ export default function RSVP() {
     }, []);
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: name === 'guests' ? parseInt(value, 10) : value
+        });
     };
 
     const handleSubmit = async (e) => {
@@ -47,11 +51,19 @@ export default function RSVP() {
         setStatus('submitting');
 
         try {
+            // Preparar el payload con el nombre exacto de la columna en Google Sheets
+            const payload = {
+                name: formData.name,
+                "Boletos aceptados": formData.guests,
+                attendance: formData.attendance,
+                message: formData.message
+            };
+
             await fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(payload)
             });
             setStatus('success');
         } catch (error) {
