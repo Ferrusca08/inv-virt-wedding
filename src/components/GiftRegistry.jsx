@@ -114,6 +114,7 @@ export default function GiftRegistry() {
                         >
                             <FaGift />
                             <span>Liverpool</span>
+                            <span style={{ fontSize: '0.75rem', fontWeight: 'normal', opacity: 0.75 }}>(No. de evento: 51950943)</span>
                         </a>
                         <a
                             href="https://www.elpalaciodehierro.com/buscar?eventId=405456"
@@ -123,10 +124,13 @@ export default function GiftRegistry() {
                         >
                             <FaGift />
                             <span>Palacio de<br />Hierro</span>
+                            <span style={{ fontSize: '0.75rem', fontWeight: 'normal', opacity: 0.75 }}>(No. de evento: 405456)</span>
                         </a>
                     </div>
                 </motion.div>
             </div>
         </section>
     );
+}
+}
 }

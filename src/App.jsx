@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -14,8 +15,10 @@ import Itinerary from './components/Itinerary';
 import DressCode from './components/DressCode';
 import GiftRegistry from './components/GiftRegistry';
 import Hotels from './components/Hotels';
+import Transport from './components/Transport';
 import RSVP from './components/RSVP';
 import Footer from './components/Footer';
+import EnvelopeIntro from './components/EnvelopeIntro';
 
 // Pages
 import OurStoryPage from './pages/OurStoryPage';
@@ -33,6 +36,7 @@ function HomePage() {
       <Location />
       <Itinerary />
       <Hotels />
+      <Transport />
       <img src={pedidaImg} alt="Separador Pedida" style={{ width: '100%', height: 'auto', display: 'block' }} />
       <GiftRegistry />
       <DressCode />
@@ -43,9 +47,18 @@ function HomePage() {
 }
 
 function App() {
+  // Check if the URL has a personalized ?id= param
+  const hasId = new URLSearchParams(window.location.search).has('id');
+  const [envelopeOpened, setEnvelopeOpened] = useState(false);
+
   return (
     <Router>
       <div className="app">
+        {/* Show envelope intro only for personalized links, until the user opens it */}
+        {hasId && !envelopeOpened && (
+          <EnvelopeIntro onOpen={() => setEnvelopeOpened(true)} />
+        )}
+
         <motion.main
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -62,3 +75,4 @@ function App() {
 }
 
 export default App
+

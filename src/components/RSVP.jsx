@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import anilloImg from '../assets/anillo.jpeg';
+import { fetchGuestById } from '../utils/guestService';
 
 export default function RSVP() {
     // 1. Estados del formulario y control
@@ -14,51 +15,26 @@ export default function RSVP() {
     const [status, setStatus] = useState('idle');
     const [invitadoEncontrado, setInvitadoEncontrado] = useState(false);
 
-    // 2. Configuración para la nueva hoja de cálculo
-    const SHEET_ID = '1Ob2W3Xgpx6QfDCyyYHJGnxyGBUZcfr_SG07LNyjmH9k'; // Nuevo ID proporcionado
-    const SHEET_NAME = 'Invitados'; // Nombre de la hoja en el nuevo documento
-    const READ_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${SHEET_NAME}`;
-
-    // IMPORTANTE: Este URL debe actualizarse con el despliegue del nuevo Google Apps Script
-    // vinculado a la nueva hoja de cálculo.
+    // Google Apps Script endpoint
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxosHKMPDW2t-_lrY616pyG-q6YCd8TjJYwXJg4NWSoQ7sW_4aXv0iC-KFml8Mhzq6JzQ/exec';
 
-    // 3. Lógica para reconocer al invitado al cargar la página
+    // 3. Reconocer al invitado usando guestService
     useEffect(() => {
-        const fetchGuest = async () => {
+        const loadGuest = async () => {
             const params = new URLSearchParams(window.location.search);
             const id = params.get('id');
-
-            if (id) {
-                try {
-                    const response = await fetch(READ_URL);
-                    const csvText = await response.text();
-
-                    // Convertir CSV a Array simple (asumiendo que los nombres no tienen comas complejas)
-                    const rows = csvText.split('\n').map(row =>
-                        row.split(',').map(cell => cell.replace(/^"(.*)"$/, '$1'))
-                    );
-
-                    // Buscar por ID (Columna A - índice 0)
-                    const row = rows.find(r => r[0] && r[0].trim().toLowerCase() === id.trim().toLowerCase());
-
-                    if (row) {
-                        const tickets = parseInt(row[3]) || 1; // Columna D (indice 3) es la cantidad de boletos
-
-                        setFormData(prev => ({
-                            ...prev,
-                            name: row[0], // Nombre del invitado
-                            guests: tickets // Preseleccionar el máximo o 1
-                        }));
-                        setMaxGuests(tickets);
-                        setInvitadoEncontrado(true);
-                    }
-                } catch (error) {
-                    console.error("Error cargando invitado:", error);
-                }
+            const guest = await fetchGuestById(id);
+            if (guest) {
+                setFormData(prev => ({
+                    ...prev,
+                    name: guest.name,
+                    guests: guest.tickets,
+                }));
+                setMaxGuests(guest.tickets);
+                setInvitadoEncontrado(true);
             }
         };
-        fetchGuest();
+        loadGuest();
     }, []);
 
     const handleChange = (e) => {
@@ -95,7 +71,7 @@ export default function RSVP() {
                     transition={{ duration: 0.6 }}
                 >
                     <h2 className="text-4xl font-heading mb-4">Confirmar Asistencia</h2>
-                    <p style={{ color: 'var(--color-text)', marginBottom: '2rem', fontSize: '1.2rem' }}>
+                    <p style={{ color: 'var(--color-text)', marginBottom: '1.5rem', fontSize: '1.2rem' }}>
                         {invitadoEncontrado
                             ? (
                                 <>
@@ -104,6 +80,21 @@ export default function RSVP() {
                                 </>
                             )
                             : "Por favor utiliza el enlace personalizado de tu invitación."}
+                    </p>
+                    <p style={{
+                        color: 'var(--color-text)',
+                        marginBottom: '2rem',
+                        fontSize: '0.95rem',
+                        maxWidth: '520px',
+                        margin: '0 auto 2rem auto',
+                        fontStyle: 'italic',
+                        lineHeight: '1.7',
+                        padding: '1rem 1.25rem',
+                        border: '1px solid var(--color-gold)',
+                        borderRadius: '0.75rem',
+                        backgroundColor: 'rgba(var(--color-gold-rgb, 180,150,90), 0.06)'
+                    }}>
+                        Para que todos podamos disfrutar al máximo y sin preocupaciones, esta celebración ha sido pensada exclusivamente para adultos. Les pedimos amablemente no traer niños menores a 15 años al evento. Agradecemos mucho su comprensión.
                     </p>
                 </motion.div>
 
