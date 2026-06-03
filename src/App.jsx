@@ -27,6 +27,9 @@ import lagunaImg from './assets/laguna.jpeg';
 import pedidaImg from './assets/Beso en puente.jpeg';
 
 function HomePage() {
+  const queryParams = new URLSearchParams(window.location.search);
+  const isGeneral = queryParams.get('id') === 'general' || queryParams.get('general') === 'true';
+
   return (
     <>
       <Navbar />
@@ -40,7 +43,7 @@ function HomePage() {
       <img src={pedidaImg} alt="Separador Pedida" style={{ width: '100%', height: 'auto', display: 'block' }} />
       <GiftRegistry />
       <DressCode />
-      <RSVP />
+      {!isGeneral && <RSVP />}
       <Footer />
     </>
   );

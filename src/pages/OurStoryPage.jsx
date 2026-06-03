@@ -19,17 +19,17 @@ export default function OurStoryPage() {
             alt: "Laguna"
         },
         {
-            text: "Su conexión fue creciendo de manera natural: desde charlas largas hasta risas compartidas, descubrieron que se complementaban de formas que ninguno de los dos había experimentado antes. La admiración, el cariño y el respeto mutuo fueron construyendo una base sólida para algo más grande.",
+            text: "Después de un año de amistad, comenzaron a salir. Tres meses más tarde, hicieron oficial su relación. El proceso fue natural, como si llevaran años conociéndose.",
             image: lamparas,
             alt: "Lámparas"
         },
         {
-            text: "Hoy, después de tantos años juntos, no hay lugar en el que prefieran estar más que el uno al lado del otro. Han crecido juntos, superando obstáculos y disfrutando cada momento que la vida les ha dado. Lo que empezó como una bonita amistad, se convirtió en un amor profundo e incondicional.",
+            text: "Su relación continuó, manteniéndose constante mientras se presentaban cambios en otras áreas de sus vidas. Experimentaron nuevos trabajos, amistades, hogares, pasatiempos y experiencias, pero siempre sabiendo que lo que nunca cambiaría era que estarían el uno para el otro.",
             image: porton,
             alt: "Portón"
         },
         {
-            text: "Y ahora, con gran emoción, darán el siguiente paso en su camino juntos: unir sus vidas en matrimonio. No es solo la unión de dos personas, sino de dos familias, dos historias y dos corazones dispuestos a seguir construyendo juntos.",
+            text: "Hoy, como lo han hecho durante la última década, dan un nuevo paso para seguir construyendo su relación y celebrar su matrimonio.",
             image: puente,
             alt: "Puente"
         }
@@ -119,7 +119,7 @@ export default function OurStoryPage() {
                         className="story-footer"
                     >
                         <p className="story-quote">
-                            "Estamos muy felices de poder compartir este momento con nuestra familia, tanto la de sangre como la que elegimos."
+                            "Estamos muy felices de poder compartir este momento con nuestra familia, tanto la de sangre como la que elegimos. Gracias por estar aquí y celebrar con nosotros este gran paso. Los amamos."
                         </p>
                         <div className="story-signature">
                             Claudia & Miguel

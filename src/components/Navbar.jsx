@@ -22,6 +22,9 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const queryParams = new URLSearchParams(window.location.search);
+    const isGeneral = queryParams.get('id') === 'general' || queryParams.get('general') === 'true';
+
     const navLinks = [
         { title: 'Inicio', id: 'home', isRoute: false },
         { title: 'Nuestra Historia', path: '/nuestra-historia', isRoute: true },
@@ -30,8 +33,8 @@ export default function Navbar() {
         { title: 'Hospedaje', id: 'hotels', isRoute: false },
         { title: 'Regalos', id: 'gifts', isRoute: false },
         { title: 'Código de Vestimenta', id: 'dresscode', isRoute: false },
-        { title: 'RSVP', id: 'rsvp', isRoute: false },
-    ];
+        !isGeneral && { title: 'RSVP', id: 'rsvp', isRoute: false },
+    ].filter(Boolean);
 
     const toggleMenu = () => setIsOpen(!isOpen);
 

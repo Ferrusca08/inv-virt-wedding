@@ -16,7 +16,7 @@ export default function RSVP() {
     const [invitadoEncontrado, setInvitadoEncontrado] = useState(false);
 
     // Google Apps Script endpoint
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxosHKMPDW2t-_lrY616pyG-q6YCd8TjJYwXJg4NWSoQ7sW_4aXv0iC-KFml8Mhzq6JzQ/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxUSY6-nDJoxrfafYQpDlQV0G6Cy7L5s0hWODdvubxqzOatqSCNdnjsbAr3dQg8Y07Axw/exec';
 
     // 3. Reconocer al invitado usando guestService
     useEffect(() => {
@@ -54,7 +54,7 @@ export default function RSVP() {
             // Preparar el payload con el nombre exacto de la columna en Google Sheets
             const payload = {
                 name: formData.name,
-                "Boletos aceptados": formData.guests,
+                boletos: formData.guests,
                 attendance: formData.attendance,
                 message: formData.message
             };
