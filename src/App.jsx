@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 // Styles
@@ -22,9 +22,35 @@ import EnvelopeIntro from './components/EnvelopeIntro';
 
 // Pages
 import OurStoryPage from './pages/OurStoryPage';
+import SeatingPage from './pages/SeatingPage';
 
 import lagunaImg from './assets/laguna.jpeg';
 import pedidaImg from './assets/Beso en puente.jpeg';
+
+function SeatingCallout() {
+  const navigate = useNavigate();
+
+  return (
+    <section className="section seating-callout" id="mesas">
+      <motion.div
+        className="seating-callout-card"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2>Acomodo de Mesas</h2>
+        <p>Consulta el plano del salón y descubre en qué mesa te sentarás.</p>
+        <button
+          className="btn btn-primary"
+          onClick={() => { navigate('/mesas'); window.scrollTo(0, 0); }}
+        >
+          Ver mi mesa
+        </button>
+      </motion.div>
+    </section>
+  );
+}
 
 function HomePage() {
   const queryParams = new URLSearchParams(window.location.search);
@@ -43,6 +69,7 @@ function HomePage() {
       <img src={pedidaImg} alt="Separador Pedida" style={{ width: '100%', height: 'auto', display: 'block' }} />
       <GiftRegistry />
       <DressCode />
+      {!isGeneral && <SeatingCallout />}
       {!isGeneral && <RSVP />}
       <Footer />
     </>
@@ -52,7 +79,11 @@ function HomePage() {
 function App() {
   // Check if the URL has a personalized ?id= param
   const hasId = new URLSearchParams(window.location.search).has('id');
-  const [envelopeOpened, setEnvelopeOpened] = useState(false);
+  // El sobre solo tiene sentido al entrar por la portada, no en enlaces
+  // directos a una sección interna (#/mesas, #/nuestra-historia).
+  const [envelopeOpened, setEnvelopeOpened] = useState(
+    () => !['', '#', '#/'].includes(window.location.hash)
+  );
 
   return (
     <Router>
@@ -70,6 +101,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/nuestra-historia" element={<OurStoryPage />} />
+            <Route path="/mesas" element={<SeatingPage />} />
           </Routes>
         </motion.main>
       </div>
