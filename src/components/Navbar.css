@@ -22,10 +22,15 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-.navbar-container {
+.navbar .navbar-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: nowrap;
+    /* Más ancho que el .container de 1200px: el menú tiene 9 enlaces y
+       necesita aire en pantallas grandes. */
+    max-width: 1400px;
 }
 
 /* Logo */
@@ -33,9 +38,13 @@
     font-family: var(--font-heading);
     font-weight: 700;
     font-size: 1.8rem;
+    line-height: 1;
     color: #ffffff;
     text-decoration: none;
     transition: color 0.3s ease;
+    /* Sin esto el logo se parte en "C / & / M" cuando el menú aprieta */
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .navbar.scrolled .navbar-logo {
@@ -46,10 +55,14 @@
 .navbar-links {
     display: none;
     /* Hidden on mobile by default */
-    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: clamp(0.7rem, 1.4vw, 1.5rem);
 }
 
-@media (min-width: 768px) {
+/* El menú horizontal solo aparece cuando de verdad caben los 9 enlaces.
+   Por debajo de 1024px se usa el menú hamburguesa. */
+@media (min-width: 1024px) {
     .navbar-links {
         display: flex;
     }
@@ -57,9 +70,9 @@
 
 .nav-link {
     font-family: var(--font-body);
-    font-size: 0.9rem;
+    font-size: clamp(0.72rem, 0.92vw, 0.9rem);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: clamp(0.04em, 0.28vw, 0.1em);
     color: #ffffff;
     text-decoration: none;
     transition: color 0.3s ease;
@@ -93,7 +106,7 @@
     gap: 1rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     .mobile-controls {
         display: none;
         /* Hide on desktop to avoid duplication */
@@ -116,7 +129,7 @@
     color: var(--color-text-dark);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     .mobile-menu-btn {
         display: none;
     }
