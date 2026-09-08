@@ -20,7 +20,7 @@ export const TABLES = [
 
 export const ZONES = [
     { key: 'dj', label: 'DJ', left: 36, top: 0.8, w: 30.4, h: 9.9 },
-    { key: 'dulce', label: 'Dulces', left: 74.4, top: 0.8, w: 25.6, h: 6.9 },
+    { key: 'dulce', label: 'Barra', left: 74.4, top: 0.8, w: 25.6, h: 6.9 },
     { key: 'barra', label: 'Barra', left: 31.2, top: 14.1, w: 41.2, h: 8.8 },
     { key: 'pista', label: 'Pista', left: 37.6, top: 26.3, w: 26.8, h: 24.8, type: 'pista' },
     { key: 'novios', label: 'Novios', left: 45.2, top: 82.1, w: 11.2, h: 6.5, type: 'novios' },
