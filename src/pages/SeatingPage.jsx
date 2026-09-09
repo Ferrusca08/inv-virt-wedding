@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaSearchPlus, FaSearchMinus, FaChair } from 'react-icons/fa';
+import { FaSearchPlus, FaSearchMinus, FaUser } from 'react-icons/fa';
 import { TABLES, ZONES, FLOOR_RATIO, tableById } from '../data/tables';
 import { fetchGuestList } from '../utils/guestService';
+import '../components/GiftRegistry.css';
 import './SeatingPage.css';
 
 const isDeclined = (status) =>
@@ -242,23 +243,40 @@ export default function SeatingPage() {
                         </motion.div>
                     )}
 
-                    {/* ---------------- Acompañantes ---------------- */}
-                    {myMesa && companions.length > 0 && (
-                        <motion.div
-                            className="companions"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                        >
-                            <h2><FaChair /> Compartes mesa con</h2>
-                            <ul>
-                                {companions.map((name) => (
-                                    <li key={name}>{name}</li>
-                                ))}
-                            </ul>
-                        </motion.div>
-                    )}
+                </div>
 
+                {/* ---------------- Acompañantes ----------------
+                    Reutiliza la misma vista que la mesa de regalos:
+                    etiqueta, divisor y tarjetas. Va fuera del contenedor
+                    del croquis para tener su mismo ancho (1100px). */}
+                {myMesa && companions.length > 0 && (
+                    <section className="gift-registry seating-people">
+                        <div className="gift-container">
+                            <motion.div
+                                className="gift-row"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6 }}
+                            >
+                                <div className="gift-label">
+                                    Compartes mesa<br />con
+                                </div>
+                                <div className="gift-divider"></div>
+                                <div className="gift-options">
+                                    {companions.map((name) => (
+                                        <div className="gift-card-new" key={name}>
+                                            <FaUser />
+                                            <span>{name}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        </div>
+                    </section>
+                )}
+
+                <div className="seating-container">
                     <p className="seating-footnote">
                         Si tienes alguna duda con tu lugar, escríbenos y lo resolvemos con gusto.
                     </p>

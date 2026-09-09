@@ -404,44 +404,13 @@
     font-weight: 600;
 }
 
-/* ---------------- Acompañantes ---------------- */
-.companions {
-    margin-top: 2.5rem;
-    padding: 1.5rem;
-    border-radius: 1rem;
-    background: var(--color-white);
-    border: 1px solid var(--color-gold);
-}
-
-.companions h2 {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    justify-content: center;
-    font-family: var(--font-heading);
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    color: var(--color-text);
-}
-
-.companions h2 svg {
-    color: var(--color-champagne);
-    font-size: 1rem;
-}
-
-.companions ul {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 0.4rem 1rem;
-}
-
-.companions li {
-    padding: 0.45rem 0.75rem;
-    border-radius: 0.5rem;
-    background: var(--color-bg);
-    font-size: 0.9rem;
-    text-align: center;
+/* ---------------- Acompañantes ----------------
+   Usa las clases de la mesa de regalos (GiftRegistry.css).
+   Aquí solo se ajusta el encaje dentro de la página de mesas. */
+.seating-people {
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 1rem;
 }
 
 .seating-footnote {
@@ -470,13 +439,4 @@
         width: 260%;
     }
 
-    .companions ul {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (max-width: 420px) {
-    .companions ul {
-        grid-template-columns: 1fr;
-    }
 }
