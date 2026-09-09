@@ -1,0 +1,103 @@
+/* Recuadro de la portada con la mesa asignada del invitado */
+.seating-callout {
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-bg);
+}
+
+.seating-callout-card {
+    max-width: 640px;
+    width: 100%;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    border-radius: 1.25rem;
+    border: 1px solid var(--color-gold);
+    background: linear-gradient(160deg, var(--color-white), rgba(201, 183, 173, 0.14));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.seating-callout-card h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    margin-bottom: 0.5rem;
+}
+
+.callout-note {
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+    max-width: 460px;
+}
+
+.callout-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-text);
+}
+
+.callout-number {
+    font-family: var(--font-heading);
+    font-size: clamp(2.4rem, 10vw, 3.4rem);
+    line-height: 1.1;
+    color: var(--color-text-dark);
+}
+
+/* Acompañantes */
+.callout-people {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(201, 183, 173, 0.45);
+}
+
+.callout-people-title {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--color-gold);
+    margin-bottom: 1rem;
+}
+
+.callout-people-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+}
+
+.callout-person {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--color-white);
+    border: 1px solid rgba(201, 183, 173, 0.5);
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.callout-person svg {
+    color: var(--color-gold);
+    font-size: 0.8rem;
+    flex: 0 0 auto;
+}
+
+.seating-callout-card .btn {
+    margin-top: 1.75rem;
+}
+
+@media (max-width: 768px) {
+    .seating-callout-card {
+        padding: 2rem 1.25rem;
+    }
+
+    .callout-person {
+        font-size: 0.85rem;
+        padding: 0.45rem 0.85rem;
+    }
+}

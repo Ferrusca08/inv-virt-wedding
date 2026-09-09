@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { HashRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 // Styles
@@ -19,6 +19,7 @@ import Transport from './components/Transport';
 import RSVP from './components/RSVP';
 import Footer from './components/Footer';
 import EnvelopeIntro from './components/EnvelopeIntro';
+import SeatingCallout from './components/SeatingCallout';
 
 // Pages
 import OurStoryPage from './pages/OurStoryPage';
@@ -26,31 +27,6 @@ import SeatingPage from './pages/SeatingPage';
 
 import lagunaImg from './assets/laguna.jpeg';
 import pedidaImg from './assets/Beso en puente.jpeg';
-
-function SeatingCallout() {
-  const navigate = useNavigate();
-
-  return (
-    <section className="section seating-callout" id="mesas">
-      <motion.div
-        className="seating-callout-card"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2>Acomodo de Mesas</h2>
-        <p>Consulta el plano del salón y descubre en qué mesa te sentarás.</p>
-        <button
-          className="btn btn-primary"
-          onClick={() => { navigate('/mesas'); window.scrollTo(0, 0); }}
-        >
-          Ver mi mesa
-        </button>
-      </motion.div>
-    </section>
-  );
-}
 
 function HomePage() {
   const queryParams = new URLSearchParams(window.location.search);

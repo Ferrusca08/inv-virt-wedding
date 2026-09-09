@@ -1,57 +1,19 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaSearchPlus, FaSearchMinus, FaUser } from 'react-icons/fa';
 import { TABLES, ZONES, FLOOR_RATIO, tableById } from '../data/tables';
-import { fetchGuestList } from '../utils/guestService';
+import useMyTable from '../utils/useMyTable';
 import '../components/GiftRegistry.css';
 import './SeatingPage.css';
 
-const isDeclined = (status) =>
-    String(status || '').trim().toLowerCase().startsWith('declin');
-
 export default function SeatingPage() {
     const navigate = useNavigate();
-    const [status, setStatus] = useState('loading'); // loading | ready | error
-    const [guests, setGuests] = useState([]);
     const [zoomed, setZoomed] = useState(false);
     const [selectedTable, setSelectedTable] = useState(null);
     const canvasRef = useRef(null);
 
-    const guestId = useMemo(
-        () => new URLSearchParams(window.location.search).get('id'),
-        []
-    );
-    const isGeneral = !guestId || guestId === 'general';
-
-    useEffect(() => {
-        let alive = true;
-        fetchGuestList()
-            .then((list) => {
-                if (!alive) return;
-                setGuests(list);
-                setStatus('ready');
-            })
-            .catch(() => alive && setStatus('error'));
-        return () => { alive = false; };
-    }, []);
-
-    const me = useMemo(() => {
-        if (isGeneral) return null;
-        const target = guestId.trim().toLowerCase();
-        return guests.find((g) => g.name.trim().toLowerCase() === target) || null;
-    }, [guests, guestId, isGeneral]);
-
-    const myMesa = me?.mesa ?? null;
-    const myTable = myMesa ? tableById[myMesa] : null;
-
-    const companions = useMemo(() => {
-        if (!myMesa) return [];
-        return guests
-            .filter((g) => g.mesa === myMesa && g.name !== me?.name && !isDeclined(g.status))
-            .map((g) => g.displayName)
-            .sort((a, b) => a.localeCompare(b, 'es'));
-    }, [guests, myMesa, me]);
+    const { status, me, isGeneral, myMesa, myTable, companions } = useMyTable();
 
     // Al ampliar el plano, centra la vista en la mesa del invitado.
     useEffect(() => {
