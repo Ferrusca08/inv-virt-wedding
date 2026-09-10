@@ -363,6 +363,25 @@
     letter-spacing: 0.02em;
 }
 
+/* Capitán de mesa: borde dorado y estrella */
+.gift-card-new.es-capitan {
+    border-color: var(--color-gold);
+    background: linear-gradient(160deg, var(--color-white), rgba(201, 183, 173, 0.18));
+}
+
+.gift-card-new.es-capitan svg {
+    color: var(--color-champagne);
+}
+
+.capitan-badge {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-gold);
+    margin-top: -0.35rem;
+}
+
 .seating-empty-table {
     color: var(--color-text-light);
     font-size: 0.95rem;

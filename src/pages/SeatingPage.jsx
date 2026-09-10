@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaSearchPlus, FaSearchMinus, FaUser } from 'react-icons/fa';
+import { FaSearchPlus, FaSearchMinus, FaUser, FaStar } from 'react-icons/fa';
 import { TABLES, ZONES, FLOOR_RATIO, tableById } from '../data/tables';
 import { fetchSeatingAssignments } from '../utils/guestService';
 import GiftRegistry from '../components/GiftRegistry';
@@ -34,9 +34,15 @@ export default function SeatingPage() {
         const map = {};
         guests.forEach((g) => {
             if (g.mesa === null) return;
-            (map[g.mesa] = map[g.mesa] || []).push(g.name);
+            (map[g.mesa] = map[g.mesa] || []).push(g);
         });
-        Object.values(map).forEach((arr) => arr.sort((a, b) => a.localeCompare(b, 'es')));
+        // Capitán primero, luego el resto en orden alfabético
+        Object.values(map).forEach((arr) =>
+            arr.sort((a, b) =>
+                (b.capitan ? 1 : 0) - (a.capitan ? 1 : 0) ||
+                a.name.localeCompare(b.name, 'es')
+            )
+        );
         return map;
     }, [guests]);
 
@@ -181,10 +187,16 @@ export default function SeatingPage() {
                                         <div className="gift-divider"></div>
                                         <div className="gift-options">
                                             {selectedGuests.length > 0 ? (
-                                                selectedGuests.map((name) => (
-                                                    <div className="gift-card-new" key={name}>
-                                                        <FaUser />
-                                                        <span>{name}</span>
+                                                selectedGuests.map((g) => (
+                                                    <div
+                                                        className={`gift-card-new ${g.capitan ? 'es-capitan' : ''}`}
+                                                        key={g.name}
+                                                    >
+                                                        {g.capitan ? <FaStar /> : <FaUser />}
+                                                        <span>{g.name}</span>
+                                                        {g.capitan && (
+                                                            <span className="capitan-badge">Capitán de mesa</span>
+                                                        )}
                                                     </div>
                                                 ))
                                             ) : (
