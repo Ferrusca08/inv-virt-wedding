@@ -19,7 +19,6 @@ import Transport from './components/Transport';
 import RSVP from './components/RSVP';
 import Footer from './components/Footer';
 import EnvelopeIntro from './components/EnvelopeIntro';
-import SeatingCallout from './components/SeatingCallout';
 
 // Pages
 import OurStoryPage from './pages/OurStoryPage';
@@ -45,7 +44,6 @@ function HomePage() {
       <img src={pedidaImg} alt="Separador Pedida" style={{ width: '100%', height: 'auto', display: 'block' }} />
       <GiftRegistry />
       <DressCode />
-      {!isGeneral && <SeatingCallout />}
       {!isGeneral && <RSVP />}
       <Footer />
     </>

@@ -33,7 +33,6 @@ export default function Navbar() {
         { title: 'Hospedaje', id: 'hotels', isRoute: false },
         { title: 'Regalos', id: 'gifts', isRoute: false },
         { title: 'Código de Vestimenta', id: 'dresscode', isRoute: false },
-        !isGeneral && { title: 'Mi Mesa', path: '/mesas', isRoute: true },
         !isGeneral && { title: 'RSVP', id: 'rsvp', isRoute: false },
     ].filter(Boolean);
 
