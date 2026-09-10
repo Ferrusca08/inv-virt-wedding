@@ -1,6 +1,9 @@
 const SHEET_ID = '1Ob2W3Xgpx6QfDCyyYHJGnxyGBUZcfr_SG07LNyjmH9k';
 const SHEET_NAME = 'Invitados';
-const READ_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${SHEET_NAME}`;
+const SEATING_SHEET_NAME = 'Asignación 2.0';
+const csvUrl = (sheet) =>
+    `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheet)}`;
+const READ_URL = csvUrl(SHEET_NAME);
 
 /* ------------------------------------------------------------------ */
 /* CSV                                                                 */
@@ -50,6 +53,27 @@ function findColumn(headers, aliases) {
         if (idx !== -1) return idx;
     }
     return -1;
+}
+
+/**
+ * Repara acentos doblemente codificados ("OthÃ³n" -> "Othón").
+ * La pestaña de asignación tiene el texto guardado como UTF-8 leído
+ * en latin-1, así que hay que deshacer esa vuelta de más.
+ * Si la cadena no está rota, se devuelve intacta.
+ */
+export function fixMojibake(text) {
+    const s = String(text || '');
+    if (!/[ÃÂ]/.test(s)) return s;
+    try {
+        const bytes = Uint8Array.from(s, (ch) => {
+            const code = ch.charCodeAt(0);
+            if (code > 255) throw new Error('fuera de latin-1');
+            return code;
+        });
+        return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+    } catch {
+        return s; // no era mojibake reparable
+    }
 }
 
 /** Quita numeraciones tipo "1 Claudia Toro" que se usan para ordenar en la hoja. */
@@ -138,4 +162,76 @@ export async function fetchGuestById(id) {
     } catch {
         return null;
     }
+}
+
+/* ------------------------------------------------------------------ */
+/* Acomodo de mesas (pestaña "Asignación 2.0")                         */
+/* ------------------------------------------------------------------ */
+
+let seatingPromise = null;
+
+/**
+ * Lee la pestaña de asignación de mesas. Columnas por nombre de
+ * encabezado: "nombre" y "mesa_manual" son las únicas obligatorias.
+ *
+ * Repara acentos rotos y descarta filas repetidas exactas
+ * (mismo nombre en la misma mesa).
+ *
+ * @returns {Promise<Array<{name:string,mesa:number|null,relacion:string,
+ *                          parte:string,dieta:string,capitan:boolean}>>}
+ */
+export function fetchSeatingAssignments() {
+    if (!seatingPromise) {
+        seatingPromise = fetch(csvUrl(SEATING_SHEET_NAME))
+            .then((res) => {
+                if (!res.ok) throw new Error(`Sheets respondió ${res.status}`);
+                return res.text();
+            })
+            .then((csvText) => {
+                const rows = parseCSV(csvText);
+                if (rows.length < 2) return [];
+
+                const headers = rows[0].map(normalizeHeader);
+                const col = {
+                    nombre: findColumn(headers, ['nombre', 'name', 'invitado']),
+                    mesa: findColumn(headers, ['mesa manual', 'mesa', 'mesa asignada', 'table']),
+                    relacion: findColumn(headers, ['relacion']),
+                    parte: findColumn(headers, ['parte']),
+                    dieta: findColumn(headers, ['dieta']),
+                    capitan: findColumn(headers, ['capitan de mesa', 'capitan']),
+                };
+                if (col.nombre === -1 || col.mesa === -1) return [];
+
+                const vistos = new Set();
+                const out = [];
+                rows.slice(1).forEach((r) => {
+                    const get = (i) => (i >= 0 ? fixMojibake(String(r[i] ?? '').trim()) : '');
+                    const name = get(col.nombre);
+                    if (!name) return;
+                    const mesa = parseMesa(get(col.mesa));
+
+                    // Una misma persona repetida en la misma mesa es un
+                    // duplicado de captura: se muestra una sola vez.
+                    const clave = `${name.toLowerCase()}|${mesa}`;
+                    if (vistos.has(clave)) return;
+                    vistos.add(clave);
+
+                    out.push({
+                        name,
+                        mesa,
+                        relacion: get(col.relacion),
+                        parte: get(col.parte),
+                        dieta: get(col.dieta),
+                        capitan: get(col.capitan) !== '',
+                    });
+                });
+                return out;
+            })
+            .catch((error) => {
+                console.error('Error cargando el acomodo de mesas:', error);
+                seatingPromise = null; // permite reintentar
+                throw error;
+            });
+    }
+    return seatingPromise;
 }

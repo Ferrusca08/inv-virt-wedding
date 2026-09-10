@@ -3,13 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaSearchPlus, FaSearchMinus, FaUser } from 'react-icons/fa';
 import { TABLES, ZONES, FLOOR_RATIO, tableById } from '../data/tables';
-import { fetchGuestList } from '../utils/guestService';
+import { fetchSeatingAssignments } from '../utils/guestService';
 import GiftRegistry from '../components/GiftRegistry';
 import '../components/GiftRegistry.css';
 import './SeatingPage.css';
-
-const isDeclined = (status) =>
-    String(status || '').trim().toLowerCase().startsWith('declin');
 
 export default function SeatingPage() {
     const navigate = useNavigate();
@@ -22,7 +19,7 @@ export default function SeatingPage() {
 
     useEffect(() => {
         let alive = true;
-        fetchGuestList()
+        fetchSeatingAssignments()
             .then((list) => {
                 if (!alive) return;
                 setGuests(list);
@@ -36,8 +33,8 @@ export default function SeatingPage() {
     const porMesa = useMemo(() => {
         const map = {};
         guests.forEach((g) => {
-            if (g.mesa === null || isDeclined(g.status)) return;
-            (map[g.mesa] = map[g.mesa] || []).push(g.displayName);
+            if (g.mesa === null) return;
+            (map[g.mesa] = map[g.mesa] || []).push(g.name);
         });
         Object.values(map).forEach((arr) => arr.sort((a, b) => a.localeCompare(b, 'es')));
         return map;
